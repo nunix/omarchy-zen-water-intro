@@ -15,7 +15,10 @@ SCALE = 2  # water-sim downsample factor
 W, H = OUT_W // SCALE, OUT_H // SCALE
 FPS, DUR = 30, 8.3
 MUSIC_START = 0.3
-LETTER_START = [0.3, 1.0, 1.7, 2.4, 3.1, 3.8, 4.5]  # one per letter of OMARCHY
+# One per letter of OMARCHY, timed to actual note onsets in the clip (found via
+# spectral-flux peak-picking) rather than an even cadence -- a fixed 0.7s
+# cadence read as rushed against the music's own, less regular phrasing.
+LETTER_START = [MUSIC_START + t for t in (0.23, 1.37, 2.51, 3.08, 3.94, 5.11, 6.27)]
 # The music clip's own fade-out starts at 7.4s in (baked into the wav) and the
 # clip is 8s long, so its fade spans MUSIC_START+7.4 to MUSIC_START+8.0 here.
 # Match the visual fade to that window exactly -- no silent hold afterward.
