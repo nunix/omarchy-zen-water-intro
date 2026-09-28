@@ -1,7 +1,7 @@
 # Generate a zen "drops on water" OMARCHY boot intro -> intro.mp4
 # Ink-gold letters surface one at a time where a drop lands on dark jade water.
-# Audio is a 6s excerpt of Ryuichi Sakamoto's "Merry Christmas Mr. Lawrence"
-# (0:56-1:02), placed at MUSIC_START, plus a few synthesized water-drop plinks.
+# Audio is an 8s excerpt of Ryuichi Sakamoto's "Merry Christmas Mr. Lawrence"
+# (0:56-1:04), placed at MUSIC_START, plus a few synthesized water-drop plinks.
 # Run: uv run --with numpy --with pillow make-intro.py
 import os, subprocess, wave
 import numpy as np
@@ -9,14 +9,14 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 TEXT = "OMARCHY"
 FONT = "/usr/share/fonts/TTF/JetBrainsMonoNerdFont-Bold.ttf"
-MUSIC_CLIP = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mrlawrence-6s.wav")
+MUSIC_CLIP = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mrlawrence-8s.wav")
 OUT_W, OUT_H = 1728, 1116
 SCALE = 2  # water-sim downsample factor
 W, H = OUT_W // SCALE, OUT_H // SCALE
-FPS, DUR = 30, 8.0
+FPS, DUR = 30, 10.0
 MUSIC_START = 0.8
 LETTER_START = [0.8, 1.6, 2.4, 3.1, 3.8, 4.5, 5.2]  # one per letter of OMARCHY
-FADE_OUT = 7.3
+FADE_OUT = 9.3
 
 # Osaka Jade palette (~/.config/omarchy/themes/osaka-jade or the stock theme)
 BG = np.array([0x11, 0x1C, 0x18], np.float32)
@@ -155,7 +155,7 @@ def frames():
             water.alpha_composite(black)
         yield water.convert("RGB").tobytes()
 
-# --- Audio: the licensed 6s excerpt plus a few synthesized drop plinks ---
+# --- Audio: the licensed 8s excerpt plus a few synthesized drop plinks ---
 SR = 48000
 n = int(SR * DUR)
 audio = np.zeros(n, np.float32)
