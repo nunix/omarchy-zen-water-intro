@@ -7,7 +7,7 @@ generated procedurally (no stock footage).
 Install:
 
 ```
-omarchy-intro-install https://github.com/<you>/omarchy-zen-water-intro.git
+omarchy-intro-install https://github.com/nunix/omarchy-zen-water-intro.git
 ```
 
 This clones the repo to `~/.config/omarchy/intros/zen-water/` and sets it as
