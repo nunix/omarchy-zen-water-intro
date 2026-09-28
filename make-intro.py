@@ -13,10 +13,13 @@ MUSIC_CLIP = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mrlawrenc
 OUT_W, OUT_H = 1728, 1116
 SCALE = 2  # water-sim downsample factor
 W, H = OUT_W // SCALE, OUT_H // SCALE
-FPS, DUR = 30, 10.0
-MUSIC_START = 0.8
-LETTER_START = [0.8, 1.6, 2.4, 3.1, 3.8, 4.5, 5.2]  # one per letter of OMARCHY
-FADE_OUT = 9.3
+FPS, DUR = 30, 8.3
+MUSIC_START = 0.3
+LETTER_START = [0.3, 1.0, 1.7, 2.4, 3.1, 3.8, 4.5]  # one per letter of OMARCHY
+# The music clip's own fade-out starts at 7.4s in (baked into the wav) and the
+# clip is 8s long, so its fade spans MUSIC_START+7.4 to MUSIC_START+8.0 here.
+# Match the visual fade to that window exactly -- no silent hold afterward.
+FADE_OUT = MUSIC_START + 7.4
 
 # Osaka Jade palette (~/.config/omarchy/themes/osaka-jade or the stock theme)
 BG = np.array([0x11, 0x1C, 0x18], np.float32)
